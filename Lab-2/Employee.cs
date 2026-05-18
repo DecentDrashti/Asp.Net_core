@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,23 +17,52 @@ namespace Lab_2
     //    {
     //    }
     //}
-    internal class Employee:Salary,Gross
+    internal class Salary
     {
-         public Employee(int d, int h,int t) :base( d, h)//Super jevu kam che base no 
-            {
-            }
+        protected int _HRA, _TA, _DA; // Renamed fields to avoid ambiguity
 
-        public void gross_sal()
+        // Constructor
+        public Salary(int d, int h, int t)
         {
-            Console.WriteLine("your gross salary");
+            _DA = d;
+            _HRA = h;
+            _TA = t;
         }
-         
-        public void calc_sal(int d,int h,int t)
+
+        // Display Salary Allowances
+        public void Disp_sal()
         {
-            Console.WriteLine("your calculate value");
+            Console.WriteLine("DA  : " + _DA);
+            Console.WriteLine("HRA : " + _HRA);
+            Console.WriteLine("TA  : " + _TA);
         }
     }
-    
 
+    // Employee Class
+    internal class Employee : Salary, Gross
+    {
+        // Constructor
+        public Employee(int d, int h, int t)
+            : base(d, h, t) // base works like super
+        {
+        }
 
+        // Interface Method
+        public void gross_sal()
+        {
+            int gross = _DA + _HRA + _TA; // Updated to use renamed fields
+
+            Console.WriteLine("\nYour Gross Salary Details");
+            Disp_sal();
+            Console.WriteLine("Gross Salary : " + gross);
+        }
+
+        // Another Method
+        public void calc_sal(int d, int h, int t)
+        {
+            int total = d + h + t;
+
+            Console.WriteLine("Calculated Value : " + total);
+        }
+    }
 }
