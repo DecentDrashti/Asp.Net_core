@@ -114,7 +114,13 @@ namespace Lab_2
             table.tabl();*/
 
             //program-10
-           Employee employee = new Employee();
+           Employee e = new Employee(3000, 2000, 1500);
+
+            e.gross_sal();
+            
+            e.calc_sal(3000, 2000, 1500);
+            
+            Console.ReadLine();
 
 
         }
